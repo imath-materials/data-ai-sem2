@@ -1,0 +1,107 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Лабораторная 05. Два представления</title><style>
+:root{--ink:#18312d;--mint:#097b72;--bg:#f2f5f3;--paper:#fff;--muted:#59706d;--line:#dbe5df;--soft:#e9f4ef;--ochre:#f8f0df;--red:#9a4f35}
+*{box-sizing:border-box}body{background:var(--bg);color:var(--ink);font:16px/1.67 system-ui,-apple-system,'Segoe UI',Arial,sans-serif;margin:0}a{color:var(--mint);text-decoration:none}a:hover{text-decoration:underline}header{background:#103e37;color:#f1fbf6;padding:26px max(18px,calc((100vw - 1100px)/2));}header .kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;opacity:.78}header h1{color:#f3fbf6;font-size:27px;line-height:1.19;margin:8px 0 7px}header p{margin:0;max-width:800px;opacity:.86}nav{max-width:1100px;margin:auto;padding:13px 19px;color:var(--muted);font-size:14px}nav a{margin-right:20px}main{max-width:1020px;margin:18px auto 68px;background:var(--paper);border:1px solid var(--line);border-radius:15px;box-shadow:0 10px 28px #16362b0e;padding:clamp(24px,5vw,62px)}h1,h2,h3{color:#153d34;line-height:1.24}h1{font-size:36px;letter-spacing:-.045em;margin-top:.1em}h2{font-size:24px;margin-top:1.7em;padding-top:.18em;border-bottom:1px solid var(--line);padding-bottom:9px}h3{font-size:19px;margin-top:1.2em}p{max-width:860px;margin:1em 0}li{margin:.35em 0}strong{color:#0d6257}blockquote{background:var(--soft);border-left:4px solid var(--mint);margin:21px 0;padding:8px 20px;border-radius:0 8px 8px 0}blockquote p{margin:10px 0}table{border-collapse:collapse;width:100%;font-size:14px;margin:22px 0;border:1px solid var(--line)}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#e8f2ed;color:#214a3f}tr:nth-child(even) td{background:#fafbf9}code{font:0.91em 'DejaVu Sans Mono',monospace;background:#eef2ef;padding:2px 5px;border-radius:4px}pre{background:#112d2b;color:#d9eee7;padding:18px;overflow:auto;border-radius:8px}pre code{color:inherit;background:none;padding:0}aside{color:var(--muted);font-size:13px} .footer{margin-top:42px;border-top:1px solid var(--line);padding-top:13px;color:var(--muted);font-size:12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.tile{display:block;background:#f7faf8;border:1px solid var(--line);border-radius:10px;padding:20px;color:var(--ink)}.tile b{display:block;margin-bottom:7px;font-size:18px}.pill{display:inline-block;background:#e5f3ed;color:#0e6857;border-radius:60px;padding:3px 11px;font-size:12px;font-weight:700}.callout{background:var(--ochre);border-radius:9px;padding:15px 20px;margin:22px 0}.small{font-size:13px;color:var(--muted)}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}button,select{font:inherit;padding:10px 14px;border:1px solid #c5dcd1;border-radius:8px;background:white;color:var(--ink)}button{cursor:pointer}button:focus-visible{outline:3px solid #e4ad45}button.primary{background:var(--mint);color:white;border-color:var(--mint)}button:disabled{opacity:.5;cursor:default}.correct{background:#e3f4e9;padding:15px 18px;border-radius:10px;border:1px solid #7eae90}.wrong{background:#fff0e7;padding:15px 18px;border-radius:10px;border:1px solid #d0a28b}.exercisecard{padding:24px;border:1px solid var(--line);border-radius:13px;background:#fff}.exercisecard h2{border:0;padding:0;margin-top:10px}.buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.buttons button{text-align:left;line-height:1.3;min-height:64px}.meter{height:8px;background:#dae7df;border-radius:99px;overflow:hidden}.meter span{display:block;height:100%;background:var(--mint);transition:width .2s}.status{min-height:64px}.inputrow{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.inputrow label{font-size:13px;color:var(--muted)}.inputrow input{width:150px}.example{font-size:14px;background:#eff7f3;padding:14px;border-radius:10px}.icon{font-size:24px}@media(max-width:650px){main{border-radius:0;margin:0;padding:19px}header{padding:24px 18px}header h1{font-size:23px}.grid,.buttons{grid-template-columns:1fr}table{display:block;overflow:auto}}@media print{body{background:white;font-size:13px}main{box-shadow:none;border:0;padding:2mm;margin:0}header{background:white;color:#103e37;padding:0}header h1{color:#103e37}nav,.toolbar,button{display:none!important}h2{break-after:avoid}blockquote,table{break-inside:avoid}}
+</style></head><body><header><div class="kicker">Данные как основа ИИ · бакалавриат · семестр 2</div><h1>Лабораторная 05. Два представления</h1><p>От отчёта для человека — к проверяемой численной схеме.</p></header><nav><a href="../index.html">← Все материалы</a><a href="../02_ЛЕКЦИИ/Лекция_04.html">Тема 04</a><a href="../02_ЛЕКЦИИ/Лекция_05.html">Тема 05</a><a href="../03_ЛАБОРАТОРНЫЕ/ЛР_04.html">Практикум 04</a><a href="../03_ЛАБОРАТОРНЫЕ/ЛР_05.html">Практикум 05</a></nav><main><h1>Лабораторная работа 5. Два представления одной ситуации</h1>
+<p><strong>Кейс:</strong> подготовка измерений микроклимата учебных помещений для двух задач. <strong>Вопрос:</strong> почему одной «универсальной» таблицы недостаточно?</p>
+<h2>Исходные файлы</h2>
+<ul>
+<li><code>campus_readings_TOPIC05_START.csv</code> — подготовленная стартовая таблица для работы; это не образцовый ответ к лабораторной 4;</li>
+<li><code>rooms_catalog.csv</code> — характеристики помещений;</li>
+<li><code>campus_messages.csv</code> — короткие текстовые сообщения из журнала обращений.</li>
+</ul>
+<p>Вы можете продолжить с результатом собственной очистки из темы 4, но это необязательно: для всех предусмотрена одинаковая стартовая версия. Не меняйте синтетические данные так, будто они реальные измерения кампуса.</p>
+<h2>Заказчик А — менеджер кампуса</h2>
+<p>Нужна понятная сводка по помещениям: дата и час наблюдения, корпус, тип аудитории, температура, CO₂, доля заполнения, качество измерения. Человек должен видеть величины в исходных единицах и понимать, в каких строках есть ограничения.</p>
+<h2>Заказчик Б — инженер, который ищет похожие состояния</h2>
+<p>Нужно подготовить численную характеристику состояния помещения, чтобы в дальнейшем сравнивать записи. Для этого важны согласованные масштабы измерений, корректное представление типа помещения и правила обращения с неизвестными данными. <strong>Сам поиск или обучение модели сейчас не требуются.</strong> Мы только готовим и проверяем представление.</p>
+<h2>Обязательная часть</h2>
+<ol>
+<li>Опишите единицу наблюдения и составьте короткий словарь исходных полей: тип, единицы, смысл, источник.</li>
+<li>Соедините измерения со справочником помещений и проверьте уникальность ключей.</li>
+<li>Создайте как минимум три производных признака: <code>day</code> (дата), <code>hour</code> (час), <code>occupancy_ratio = people_count/capacity</code>. Сохраните флаг качества исходной записи.</li>
+<li>Подготовьте <strong>представление А</strong>: читаемую таблицу с единицами измерения и пояснением для менеджера, без скрытых кодов категорий в качестве замены естественных названий.</li>
+<li>Подготовьте <strong>представление Б</strong>: одну согласованную схему числовых признаков. Категории закодируйте осмысленно, выберите, какие числовые поля требуют масштабирования для сравнения расстояний; не нормализуйте идентификаторы.</li>
+<li>Выберите как минимум пять строк и вручную проверьте производные поля и кодирование. Опишите, где новый признак нельзя вычислить надёжно.</li>
+<li>Спросите ИИ или используйте приложенную рекомендацию о выборе кодирования/масштабирования. Укажите минимум два предложения, которые были приняты после проверки, и минимум одно, которое отклонили с обоснованием.</li>
+<li>Сравните две версии: какие столбцы различаются, что человек выигрывает в А и что машина потенциально получает в Б?</li>
+</ol>
+<h2>Дополнительный мини-блок: LLM-разметка текстовых сообщений</h2>
+<p>Из файла <code>campus_messages.csv</code> выберите 8–12 сообщений. Составьте закрытый словарь тем/намерений, попросите LLM вернуть таблицу <code>message_id, topic, intent, needs_review</code>, а затем вручную проверьте результаты. Если LLM недоступна, используйте правила ключевых слов как базовый альтернативный метод и опишите, какие сообщения не поддаются однозначному распознаванию.</p>
+<p>Это <strong>отдельный тип преобразования</strong>: здесь категории не вычисляются математической формулой, а извлекаются из текста с некоторой вероятностью ошибки. Не присваивайте сообщению статус «ремонт необходим» без дополнительных данных.</p>
+<h2>Маршрут A. Прикладной / без кода</h2>
+<ul>
+<li>В таблицах создайте листы <code>Справочник</code>, <code>Проекция_A</code>, <code>Проекция_B</code> и <code>Проверка</code>.</li>
+<li>Сделайте вычисляемые поля при помощи формул; параметры масштаба вынесите в отдельные видимые ячейки, чтобы новая партия данных использовала те же границы.</li>
+<li>Преобразуйте типы помещений в отдельные индикаторы (<code>is_lecture</code>, <code>is_lab</code> и т. п.), не забывая о варианте «иной тип».</li>
+<li>Сформируйте две таблицы по одному и тому же списку <code>record_id</code>; проверьте одинаковое количество физических наблюдений.</li>
+</ul>
+<p><strong>Углубление:</strong> объясните, когда округление доли заполнения до 0 или 1 уничтожает информацию, и покажите конкретный пример.</p>
+<h2>Маршрут B. Программный</h2>
+<ul>
+<li>Напишите функцию подготовки признаков, принимающую набор данных и проверенный справочник.</li>
+<li>Разделите этап определения параметров масштаба (<code>fit</code>) и применения к данным (<code>transform</code>). Не обучайте модель и не загружайте параметры из неизвестного файла.</li>
+<li>Реализуйте one-hot кодирование или иной обоснованный способ для номинальных категорий; фиксируйте перечень категорий.</li>
+<li>Выделите отдельно сохранённые оригинальные поля и числовые признаки для последующего сравнения.</li>
+<li>Добавьте минимум пять тестов: отсутствие вместимости, нулевой знаменатель, категория не из словаря, экстремальный CO₂, новый файл с прежней шкалой.</li>
+</ul>
+<p><strong>Углубление:</strong> структурируйте текстовые сообщения с помощью LLM и программной проверки JSON-схемы, продемонстрируйте результат ручного аудита.</p>
+<h2>Маршрут C. Исследовательский</h2>
+<ul>
+<li>Определите предметно осмысленные производные величины и зафиксируйте их допущения.</li>
+<li>Сравните результат масштабирования с сохранением исходных единиц на конкретной паре наблюдений.</li>
+<li>Проверьте влияние экстремального CO₂ на минимумы, максимумы и параметры стандартизации; обоснуйте, что делать с наблюдениями <code>review</code>.</li>
+<li>Для дополнительной части по сообщениям составьте правила разметки так, чтобы два независимых человека могли приблизительно воспроизвести решение.</li>
+</ul>
+<p><strong>Углубление:</strong> сравните два подхода к шкалированию (min–max и z-score) и опишите, где изменится интерпретация расстояния.</p>
+<h2>Предложение ИИ для аудита</h2>
+<blockquote>
+<p>«Все категории заменяем числами 1, 2, 3. ID помещения тоже нормализуем. CO₂ и температуру можно оставить как есть: программа сама поймёт единицы. Все значения occupancy_ratio больше единицы обрезаем до 1.0. При повторном поступлении данных снова рассчитываем min и max отдельно для каждой новой партии».</p>
+</blockquote>
+<p>Разбейте ответ по пунктам. Для каждого укажите, допустимо ли это в представлении А и Б, почему и как проверить результат.</p>
+<h2>Формат сдачи</h2>
+<ul>
+<li>Две таблицы или два файла: <code>representation_A</code> и <code>representation_B</code>.</li>
+<li>Словарь минимум пяти признаков со способом получения и единицами.</li>
+<li>Контроль пяти строк, включая хотя бы один нетипичный случай.</li>
+<li>Обоснование выбора кодирования и масштабирования, включая параметры выбранной шкалы.</li>
+<li>Аудит рекомендаций ИИ; для дополнительного блока — таблица разметки с ручной проверкой.</li>
+</ul>
+<h2>Оценивание: 10 баллов</h2>
+<table>
+<thead>
+<tr>
+  <th>Критерий</th>
+  <th style="text-align:right">Баллы</th>
+  <th>Что проверяем</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Смысл и исходные типы признаков</td>
+  <td style="text-align:right">2</td>
+  <td>ID не интерпретируется как число; учтены единицы</td>
+</tr>
+<tr>
+  <td>Два целевых представления</td>
+  <td style="text-align:right">3</td>
+  <td>Таблицы соответствуют двум задачам; не потеряны идентификаторы</td>
+</tr>
+<tr>
+  <td>Кодирование и масштабирование</td>
+  <td style="text-align:right">2</td>
+  <td>Обоснованы методы, зафиксированы параметры</td>
+</tr>
+<tr>
+  <td>Аудит ИИ и проверка примеров</td>
+  <td style="text-align:right">2</td>
+  <td>Есть конкретные ручные проверки и отклонённые рекомендации</td>
+</tr>
+<tr>
+  <td>Воспроизводимость</td>
+  <td style="text-align:right">1</td>
+  <td>Можно повторить преобразование на новых строках</td>
+</tr>
+</tbody>
+</table>
+<p>Дополнительный текстовый блок используется для углубления, но не является обязательным условием получения 10 баллов. Максимальный балл доступен на любом маршруте.</p>
+<div class="footer">Данные как основа ИИ · бакалавриат</div></main></body></html>

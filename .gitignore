@@ -1,0 +1,8 @@
+__pycache__/
+.ipynb_checkpoints/
+*.aux
+*.log
+*.nav
+*.snm
+*.toc
+.DS_Store

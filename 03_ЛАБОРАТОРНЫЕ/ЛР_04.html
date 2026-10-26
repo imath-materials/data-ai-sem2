@@ -1,0 +1,109 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Лабораторная 04. Протокол исправлений</title><style>
+:root{--ink:#18312d;--mint:#097b72;--bg:#f2f5f3;--paper:#fff;--muted:#59706d;--line:#dbe5df;--soft:#e9f4ef;--ochre:#f8f0df;--red:#9a4f35}
+*{box-sizing:border-box}body{background:var(--bg);color:var(--ink);font:16px/1.67 system-ui,-apple-system,'Segoe UI',Arial,sans-serif;margin:0}a{color:var(--mint);text-decoration:none}a:hover{text-decoration:underline}header{background:#103e37;color:#f1fbf6;padding:26px max(18px,calc((100vw - 1100px)/2));}header .kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;opacity:.78}header h1{color:#f3fbf6;font-size:27px;line-height:1.19;margin:8px 0 7px}header p{margin:0;max-width:800px;opacity:.86}nav{max-width:1100px;margin:auto;padding:13px 19px;color:var(--muted);font-size:14px}nav a{margin-right:20px}main{max-width:1020px;margin:18px auto 68px;background:var(--paper);border:1px solid var(--line);border-radius:15px;box-shadow:0 10px 28px #16362b0e;padding:clamp(24px,5vw,62px)}h1,h2,h3{color:#153d34;line-height:1.24}h1{font-size:36px;letter-spacing:-.045em;margin-top:.1em}h2{font-size:24px;margin-top:1.7em;padding-top:.18em;border-bottom:1px solid var(--line);padding-bottom:9px}h3{font-size:19px;margin-top:1.2em}p{max-width:860px;margin:1em 0}li{margin:.35em 0}strong{color:#0d6257}blockquote{background:var(--soft);border-left:4px solid var(--mint);margin:21px 0;padding:8px 20px;border-radius:0 8px 8px 0}blockquote p{margin:10px 0}table{border-collapse:collapse;width:100%;font-size:14px;margin:22px 0;border:1px solid var(--line)}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#e8f2ed;color:#214a3f}tr:nth-child(even) td{background:#fafbf9}code{font:0.91em 'DejaVu Sans Mono',monospace;background:#eef2ef;padding:2px 5px;border-radius:4px}pre{background:#112d2b;color:#d9eee7;padding:18px;overflow:auto;border-radius:8px}pre code{color:inherit;background:none;padding:0}aside{color:var(--muted);font-size:13px} .footer{margin-top:42px;border-top:1px solid var(--line);padding-top:13px;color:var(--muted);font-size:12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.tile{display:block;background:#f7faf8;border:1px solid var(--line);border-radius:10px;padding:20px;color:var(--ink)}.tile b{display:block;margin-bottom:7px;font-size:18px}.pill{display:inline-block;background:#e5f3ed;color:#0e6857;border-radius:60px;padding:3px 11px;font-size:12px;font-weight:700}.callout{background:var(--ochre);border-radius:9px;padding:15px 20px;margin:22px 0}.small{font-size:13px;color:var(--muted)}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}button,select{font:inherit;padding:10px 14px;border:1px solid #c5dcd1;border-radius:8px;background:white;color:var(--ink)}button{cursor:pointer}button:focus-visible{outline:3px solid #e4ad45}button.primary{background:var(--mint);color:white;border-color:var(--mint)}button:disabled{opacity:.5;cursor:default}.correct{background:#e3f4e9;padding:15px 18px;border-radius:10px;border:1px solid #7eae90}.wrong{background:#fff0e7;padding:15px 18px;border-radius:10px;border:1px solid #d0a28b}.exercisecard{padding:24px;border:1px solid var(--line);border-radius:13px;background:#fff}.exercisecard h2{border:0;padding:0;margin-top:10px}.buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.buttons button{text-align:left;line-height:1.3;min-height:64px}.meter{height:8px;background:#dae7df;border-radius:99px;overflow:hidden}.meter span{display:block;height:100%;background:var(--mint);transition:width .2s}.status{min-height:64px}.inputrow{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.inputrow label{font-size:13px;color:var(--muted)}.inputrow input{width:150px}.example{font-size:14px;background:#eff7f3;padding:14px;border-radius:10px}.icon{font-size:24px}@media(max-width:650px){main{border-radius:0;margin:0;padding:19px}header{padding:24px 18px}header h1{font-size:23px}.grid,.buttons{grid-template-columns:1fr}table{display:block;overflow:auto}}@media print{body{background:white;font-size:13px}main{box-shadow:none;border:0;padding:2mm;margin:0}header{background:white;color:#103e37;padding:0}header h1{color:#103e37}nav,.toolbar,button{display:none!important}h2{break-after:avoid}blockquote,table{break-inside:avoid}}
+</style></head><body><header><div class="kicker">Данные как основа ИИ · бакалавриат · семестр 2</div><h1>Лабораторная 04. Протокол исправлений</h1><p>Профильные маршруты и задания по датасету «Умный кампус».</p></header><nav><a href="../index.html">← Все материалы</a><a href="../02_ЛЕКЦИИ/Лекция_04.html">Тема 04</a><a href="../02_ЛЕКЦИИ/Лекция_05.html">Тема 05</a><a href="../03_ЛАБОРАТОРНЫЕ/ЛР_04.html">Практикум 04</a><a href="../03_ЛАБОРАТОРНЫЕ/ЛР_05.html">Практикум 05</a></nav><main><h1>Лабораторная работа 4. Протокол исправлений</h1>
+<p><strong>Кейс:</strong> сенсорные измерения в учебных помещениях кампуса. <strong>Вопрос:</strong> как исправить данные, не скрыв возможные неполадки вентиляции и датчиков?</p>
+<h2>Исходные файлы</h2>
+<ul>
+<li><code>campus_readings_RAW.csv</code> — основная таблица; в ней намеренно есть разные типы нарушений и спорные значения;</li>
+<li><code>rooms_catalog.csv</code> — справочник помещений, вместимостей и датчиков;</li>
+<li><code>ПРОЧТИ_ПЕРЕД_РАБОТОЙ.txt</code> — единицы измерения и ограничения.</li>
+</ul>
+<p>Сырой файл сохраняется без изменений. Считайте каждую строку самостоятельным наблюдением, пока не доказано обратное. Данные синтетические и не отражают реальные условия в аудиториях.</p>
+<h2>Проблема, которую нужно решить</h2>
+<p>Управляющему нужно получить массив измерений для дальнейшей статистики по помещениям. Нельзя просто удалить всю «неудобную» информацию: экстремальный уровень CO₂ или переполнение аудитории как раз может быть предметом расследования. К концу лабораторной вы должны передать не только таблицу, но и <strong>набор решений</strong>, по которым её можно проверить.</p>
+<h2>Обязательная часть для любого маршрута</h2>
+<ol>
+<li><strong>Зафиксируйте исходное состояние.</strong> Запишите число строк и уникальных <code>record_id</code>, долю пустых значений в <code>co2_ppm</code>, <code>temp_c</code>, <code>people_count</code>, количество кодов помещений без пары в справочнике. Нельзя писать «несколько пропусков» — укажите числа.</li>
+<li><strong>Задайте единицу наблюдения.</strong> На основании чего две строки признаются одним измерением? Объясните, почему совпавшее числовое показание не является достаточным условием дубля.</li>
+<li><strong>Постройте таблицу решений для пяти типов проблем:</strong> формат даты/числа, полная копия строки, конфликт записей, невозможное значение, экстремальное, но потенциально реальное значение. Для каждого типа задайте правило и способ проверки.</li>
+<li><strong>Примените правила.</strong> Не перезаписывайте сырой файл. Не восстанавливайте отсутствующие измерения из воздуха; если выбрали заполнение, оставьте первоначальный пропуск и обоснуйте метод отдельно. Не позволяйте ИИ удалять данные автоматически.</li>
+<li><strong>Обогатите результат справочником.</strong> Добавьте корпус, тип помещения и вместимость, предварительно проверив уникальность <code>room_id</code> и полноту сопоставления.</li>
+<li><strong>Проверьте результат.</strong> Составьте баланс строк: <code>сырые = оставленные + точные дубли + помещённые в карантин</code> с учётом выбранных категорий; отдельно укажите число изменённых значений и случаи, оставленные с флагом <code>review</code>.</li>
+<li><strong>Проведите аудит ИИ.</strong> Получите план очистки от доступной LLM или используйте приложенный план-кандидат, отметьте не менее трёх его рекомендаций как принятые, отклонённые либо требующие уточнения. Для каждого укажите проверку по данным.</li>
+</ol>
+<h3>Три вопроса, на которые нужно ответить в отчёте</h3>
+<ul>
+<li>Какой обнаруженный случай было бы опасно автоматически «нормализовать» и почему?</li>
+<li>На сколько изменилась доля неполных измерений CO₂ после ваших действий? Не создала ли очистка ложную полноту?</li>
+<li>Какие ошибки может обнаружить стандартное правило, а какие требуют обращения к первичному источнику или предметному специалисту?</li>
+</ul>
+<h2>Маршрут A. Прикладной / без программирования</h2>
+<p><strong>Инструменты:</strong> электронная таблица (LibreOffice Calc / Excel / аналог) и ИИ-помощник. Можно пользоваться готовым табличным шаблоном из комплекта.</p>
+<ol>
+<li>Скопируйте сырой лист. Отдельно создайте листы <code>Решения</code>, <code>Карантин</code> и <code>Итог</code>.</li>
+<li>При помощи фильтров найдите пустые значения и варианты написания аудитории и режима вентиляции.</li>
+<li>Составьте таблицу соответствия допустимых алиасов и кодов справочника. Не исправляйте неизвестные ключи без проверки.</li>
+<li>Приведите десятичные запятые к числам; проверьте три строки вручную.</li>
+<li>Выделите точные дубли целых строк и конфликты по <code>record_id</code>; продемонстрируйте отличие.</li>
+<li>Выполните объединение со справочником по однозначным кодам. Если средство не позволяет JOIN, используйте поиск по ключу и отдельно посчитайте несопоставленные записи.</li>
+<li>Проведите ручной аудит шести выбранных строк, включая запись с экстремальным CO₂, и подготовьте баланс строк.</li>
+</ol>
+<p><strong>Дополнительный вызов:</strong> придумайте учебный вопрос, при котором ошибочная очистка изменила бы управленческий вывод; покажите две версии ответа на реальных строках своего файла.</p>
+<h2>Маршрут B. Программный</h2>
+<p><strong>Инструменты:</strong> Python + pandas, Jupyter. Используйте ноутбук <code>04_Стартовый_практикум.ipynb</code> как демонстрационный блок; собственный код решения сохраните отдельно.</p>
+<ol>
+<li>Реализуйте <code>parse_number()</code>, <code>parse_timestamp()</code>, <code>normalise_room_id()</code> с понятными правилами и диагностикой неуспешных преобразований.</li>
+<li>Разведите точные дубли, конфликтующие ID и разные измерения с совпавшими числовыми значениями.</li>
+<li>Реализуйте набор ограничений и создайте столбец(ы) <code>quality_flag</code>; для неоднозначных случаев используйте <code>needs_review</code>.</li>
+<li>Проверьте справочник на уникальность ключа перед объединением и подтвердите, что JOIN не размножил строки.</li>
+<li>Создайте минимум пять тестов: десятичная запятая, пропуск, точный дубль, конфликт по ID, экстремальное, но допустимое показание.</li>
+<li>Повторно запустите преобразование на исходном файле и сравните контрольную сумму / число строк / ключевые поля с предыдущим результатом.</li>
+</ol>
+<p><strong>Дополнительный вызов:</strong> получите от ИИ вторую версию <code>clean()</code> и сделайте тест, который выявляет содержательную ошибку её реализации.</p>
+<h2>Маршрут C. Исследовательский</h2>
+<p>Работайте с теми же файлами, но выберите фокус на достоверности измерений. Подготовьте протокол допустимых диапазонов и флагов качества, проанализируйте два сценария: экстремальное значение является достоверным и экстремальное значение является отказом сенсора. Покажите, как изменится диапазон наблюдаемых значений и число случаев, требующих проверки.</p>
+<p>Требуется не меньше пяти проверенных вручную случаев. При обработке отсутствующих значений явно отделите отсутствие измерения от измерения нулевого уровня. Дополнительный вызов — спроектировать маршрут уточнения проблемных измерений у оператора, не теряя исходные записи.</p>
+<h2>Проверка ИИ: готовый план-кандидат</h2>
+<p>Если нет доступа к LLM, проверьте как предложение автоматизированного помощника следующий план:</p>
+<blockquote>
+<p>(1) Удалить все строки с пропущенным CO₂. (2) Считать дублями все записи, где повторяется CO₂ и температура. (3) Избавиться от CO₂ выше 2000, поскольку это выброс. (4) Исправить все коды аудиторий на наиболее близкие из справочника. (5) После изменений вычислить среднее и объявить файл очищенным.</p>
+</blockquote>
+<p>Прокомментируйте отдельно каждый пункт: принято / отклонено / нужно уточнить, с указанием риска и конкретного теста.</p>
+<h2>Формат сдачи</h2>
+<ul>
+<li>Результирующий файл или таблица с читаемыми именами полей.</li>
+<li>Баланс строк + журнал решений (можно использовать <code>Шаблон_решений_04.csv</code>).</li>
+<li>Не менее шести рассмотренных проблемных записей с аргументацией.</li>
+<li>Аудит предложений ИИ, включая минимум одно неверное предложение.</li>
+<li>Краткий ответ на три вопроса выше (общим объёмом до одной страницы).</li>
+</ul>
+<h2>Оценивание: 10 баллов</h2>
+<table>
+<thead>
+<tr>
+  <th>Критерий</th>
+  <th style="text-align:right">Баллы</th>
+  <th>Что проверяем</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Исходная диагностика и единица наблюдения</td>
+  <td style="text-align:right">2</td>
+  <td>Зафиксированы исходные показатели, корректно определены дубли</td>
+</tr>
+<tr>
+  <td>Обоснование решений</td>
+  <td style="text-align:right">3</td>
+  <td>Не смешиваются ошибка, пропуск и нетипичное, но допустимое значение</td>
+</tr>
+<tr>
+  <td>Качество результата</td>
+  <td style="text-align:right">2</td>
+  <td>Сопоставление со справочником, отсутствие бесконтрольной потери строк</td>
+</tr>
+<tr>
+  <td>Проверка использования ИИ</td>
+  <td style="text-align:right">2</td>
+  <td>Разобраны риски и проверены конкретные рекомендации</td>
+</tr>
+<tr>
+  <td>Воспроизводимость</td>
+  <td style="text-align:right">1</td>
+  <td>Сохранён оригинал, понятны шаги и результаты</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Важно:</strong> за автоматическое удаление неоднозначных наблюдений без указания последствий нельзя получить полный балл, даже если финальный файл содержит меньше пропусков. Максимальная оценка достижима на любом из трёх маршрутов.</p>
+<div class="footer">Данные как основа ИИ · бакалавриат</div></main></body></html>

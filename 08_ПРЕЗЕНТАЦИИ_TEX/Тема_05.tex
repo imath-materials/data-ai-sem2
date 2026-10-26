@@ -1,0 +1,206 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{DejaVu Sans}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+\definecolor{teal}{HTML}{0A685B}
+\definecolor{dark}{HTML}{153B35}
+\definecolor{pale}{HTML}{E8F4EE}
+\definecolor{orange}{HTML}{A95A33}
+\setbeamercolor{frametitle}{fg=dark}
+\setbeamercolor{title}{fg=dark}
+\setbeamercolor{structure}{fg=teal}
+\setbeamercolor{block title}{bg=teal,fg=white}
+\setbeamercolor{block body}{bg=pale,fg=dark}
+\setbeamercolor{block title alerted}{bg=orange,fg=white}
+\setbeamercolor{block body alerted}{bg=orange!9,fg=dark}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{\hfill\scriptsize\insertframenumber\, / \,\inserttotalframenumber\hspace{12pt}\vspace{5pt}}
+\setbeamertemplate{itemize item}{\raisebox{.2ex}{\tiny$\blacktriangleright$}}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\leftmargini}{1.3em}
+\begin{document}
+\begin{frame}[plain]
+\begin{beamercolorbox}[wd=\paperwidth,ht=\paperheight,sep=1.4cm,center]{title}
+\vspace*{1.0cm}{\large Данные как основа ИИ · семестр 2}\par\vspace{1cm}
+{\fontsize{30}{38}\selectfont\bfseries Одни данные — разные признаки}\par\vspace{0.6cm}
+{\large Почему представление зависит от вопроса}\par\vfill{\small Кейс «Умный кампус» · университетские пространства}
+\end{beamercolorbox}\end{frame}
+\begin{frame}[t]{Одна таблица, два заказчика}
+\begin{itemize}
+\item Управляющий хочет понятный отчёт по аудиториям.
+\vspace{4pt}
+\item Инженер хочет сравнивать похожие состояния помещений.
+\vspace{4pt}
+\item Одна и та же исходная запись может иметь разные полезные представления.
+\vspace{4pt}
+\end{itemize}
+\vfill\begin{alertblock}{Вопрос аудитории}Должны ли выходные столбцы быть одинаковыми?\end{alertblock}
+\end{frame}
+\begin{frame}[t]{Данные и смысловые типы}
+\begin{itemize}
+\item record\_id — идентификатор, не количество.
+\vspace{4pt}
+\item room\_type — номинальная категория.
+\vspace{4pt}
+\item co2\_ppm — непрерывное измерение с единицами.
+\vspace{4pt}
+\item observed\_at — время, из которого получаются календарные признаки.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Сравнивать занятость корректно}
+\begin{itemize}
+\item 18 человек из 20 мест: доля заполнения 0,9.
+\vspace{4pt}
+\item 18 человек из 60 мест: доля заполнения 0,3.
+\vspace{4pt}
+\item Смысловой признак важнее произвольного числового кода комнаты.
+\vspace{4pt}
+\end{itemize}
+\vfill\begin{alertblock}{Вопрос аудитории}Что делать, если вместимость отсутствует?\end{alertblock}
+\end{frame}
+\begin{frame}[t]{Признак должен знать свою формулу}
+\begin{itemize}
+\item day = календарная дата измерения.
+\vspace{4pt}
+\item hour = час измерения.
+\vspace{4pt}
+\item occupancy\_ratio = people\_count / capacity.
+\vspace{4pt}
+\item quality\_flag сохраняет ограничения исходного наблюдения.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Порог — не закон природы}
+\begin{itemize}
+\item Отчёт может использовать учебный индикатор «значение выше X».
+\vspace{4pt}
+\item X должен быть указан и обоснован.
+\vspace{4pt}
+\item Учебные пороги не заменяют действующие санитарные нормы и калибровку.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Номинальная категория не является шкалой}
+\begin{itemize}
+\item Лекционная=1, семинарская=2, лабораторная=3 — произвольные коды.
+\vspace{4pt}
+\item Алгоритм расстояния увидит несуществующий порядок.
+\vspace{4pt}
+\item Для номинальных категорий подойдёт индикаторное представление.
+\vspace{4pt}
+\end{itemize}
+\vfill\begin{alertblock}{Вопрос аудитории}Почему лабораторная «дальше» от лекционной на один шаг?\end{alertblock}
+\end{frame}
+\begin{frame}[t]{Когда масштаб мешает}
+\begin{itemize}
+\item Вектор содержит CO₂ около 900, температуру 22 и заполнение 0,7.
+\vspace{4pt}
+\item В прямом расстоянии вклад CO₂ может доминировать.
+\vspace{4pt}
+\item При масштабировании надо сохранить смысл и зафиксировать параметры.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Min–max без магии}
+\begin{itemize}
+\item Формула: новое = (x−min) / (max−min).
+\vspace{4pt}
+\item На новой партии не нужно пересчитывать min и max заново, если требуются сопоставимые значения.
+\vspace{4pt}
+\item Результат за пределами 0–1 возможен для нового экстремума.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Стандартизация и выбросы}
+\begin{itemize}
+\item Z-оценка — отклонение от среднего в единицах стандартного отклонения.
+\vspace{4pt}
+\item Экстремальные наблюдения влияют на среднее и разброс.
+\vspace{4pt}
+\item Масштабирование ID и произвольных категорий не придаёт им смысла.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Представление А: читаемый отчёт}
+\begin{itemize}
+\item room\_id, корпус, дата, час, CO₂ ppm, °C, заполнение.
+\vspace{4pt}
+\item Видны статусы качества и пропуски.
+\vspace{4pt}
+\item Названия категорий сохраняются для человека.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Представление Б: численная схема}
+\begin{itemize}
+\item Численные поля согласованы по шкале.
+\vspace{4pt}
+\item Номинальные категории закодированы без ложного порядка.
+\vspace{4pt}
+\item ID остаётся для идентификации, но не участвует в расстоянии.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Из сообщения — в структурированный признак}
+\begin{itemize}
+\item «В аудитории душно» -> тема «воздух».
+\vspace{4pt}
+\item «Датчик не отвечает» -> тема «датчик» или нужна проверка.
+\vspace{4pt}
+\item LLM предлагает метку, проверка идёт по закрытому словарю и ID.
+\vspace{4pt}
+\end{itemize}
+\vfill\begin{alertblock}{Вопрос аудитории}Как проверить, что модель не потеряла ни одного сообщения?\end{alertblock}
+\end{frame}
+\begin{frame}[t]{Что нельзя принимать от ИИ}
+\begin{itemize}
+\item «Нормализуем номер аудитории как число».
+\vspace{4pt}
+\item «Всем категориям присвоим 1–2–3».
+\vspace{4pt}
+\item «Всё выше 1.0 по заполнению обрежем».
+\vspace{4pt}
+\item «На каждом файле пересчитаем новую шкалу».
+\vspace{4pt}
+\end{itemize}
+\vfill\begin{alertblock}{Вопрос аудитории}Выберите самый опасный пункт для нашей задачи и объясните.\end{alertblock}
+\end{frame}
+\begin{frame}[t]{Лабораторная: две версии}
+\begin{itemize}
+\item Результаты А и Б строятся из одной исходной таблицы.
+\vspace{4pt}
+\item Словарь признаков: смысл, формула, единицы, ограничения.
+\vspace{4pt}
+\item Пять контрольных строк + аудит рекомендаций ИИ.
+\vspace{4pt}
+\item Необязательное углубление — LLM-разметка сообщений.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Работоспособность новой партии}
+\begin{itemize}
+\item Сохранили ли мы правила и параметры?
+\vspace{4pt}
+\item Сохранились ли ID и число наблюдений?
+\vspace{4pt}
+\item Как вести себя при неизвестной категории или пустой вместимости?
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Выходной билет}
+\begin{itemize}
+\item Назовите преобразование, которое полезно для отчёта, но не нужно для сравнения.
+\vspace{4pt}
+\item Назовите операцию, способную создать ложное числовое расстояние.
+\vspace{4pt}
+\item Что вы должны проверить, прежде чем доверять признаку, извлечённому LLM?
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\end{document}

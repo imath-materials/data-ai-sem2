@@ -1,0 +1,208 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+\setmainfont{DejaVu Sans}
+\setsansfont{DejaVu Sans}
+\setmonofont{DejaVu Sans Mono}
+\definecolor{teal}{HTML}{0A685B}
+\definecolor{dark}{HTML}{153B35}
+\definecolor{pale}{HTML}{E8F4EE}
+\definecolor{orange}{HTML}{A95A33}
+\setbeamercolor{frametitle}{fg=dark}
+\setbeamercolor{title}{fg=dark}
+\setbeamercolor{structure}{fg=teal}
+\setbeamercolor{block title}{bg=teal,fg=white}
+\setbeamercolor{block body}{bg=pale,fg=dark}
+\setbeamercolor{block title alerted}{bg=orange,fg=white}
+\setbeamercolor{block body alerted}{bg=orange!9,fg=dark}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{\hfill\scriptsize\insertframenumber\, / \,\inserttotalframenumber\hspace{12pt}\vspace{5pt}}
+\setbeamertemplate{itemize item}{\raisebox{.2ex}{\tiny$\blacktriangleright$}}
+\setbeamerfont{frametitle}{size=\Large,series=\bfseries}
+\setbeamerfont{normal text}{size=\normalsize}
+\setlength{\leftmargini}{1.3em}
+\begin{document}
+\begin{frame}[plain]
+\begin{beamercolorbox}[wd=\paperwidth,ht=\paperheight,sep=1.4cm,center]{title}
+\vspace*{1.0cm}{\large Данные как основа ИИ · семестр 2}\par\vspace{1cm}
+{\fontsize{30}{38}\selectfont\bfseries Очистка без потери смысла}\par\vspace{0.6cm}
+{\large От диагностической таблицы к протоколу решений}\par\vfill{\small Кейс «Умный кампус» · университетские пространства}
+\end{beamercolorbox}\end{frame}
+\begin{frame}[t]{Сразу нельзя ответить}
+\begin{itemize}
+\item CO₂ = 0 ppm — прибор ничего не измерил или записал ноль?
+\vspace{4pt}
+\item CO₂ = 4200 ppm — ошибка выгрузки или серьёзный сигнал?
+\vspace{4pt}
+\item Обе строки требуют проверки; действия могут быть противоположными.
+\vspace{4pt}
+\end{itemize}
+\vfill\begin{alertblock}{Вопрос аудитории}Какое значение удалить прямо сейчас?\end{alertblock}
+\end{frame}
+\begin{frame}[t]{Чему научимся}
+\begin{itemize}
+\item Определять единицу наблюдения и технический дубль.
+\vspace{4pt}
+\item Исправлять значения по доказанным правилам.
+\vspace{4pt}
+\item Сохранять нетипичные, но потенциально реальные события.
+\vspace{4pt}
+\item Проверять, как очистка повлияла на массив.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Одно наблюдение — один факт}
+\begin{itemize}
+\item Датчик SN-101, аудитория A-101, 16 марта, 10:00: 810 ppm.
+\vspace{4pt}
+\item Тот же датчик, 10:30: 810 ppm.
+\vspace{4pt}
+\item Одинаковые значения не означают одну и ту же физическую запись.
+\vspace{4pt}
+\end{itemize}
+\vfill\begin{alertblock}{Вопрос аудитории}Какие поля позволяют установить тождество измерения?\end{alertblock}
+\end{frame}
+\begin{frame}[t]{Типы нарушений}
+\begin{itemize}
+\item Формат: 21,4 и 21.4; разные формы даты.
+\vspace{4pt}
+\item Структура: повтор ID, неизвестное помещение, конфликтные версии.
+\vspace{4pt}
+\item Смысл: отрицательная численность, нереалистичный нуль.
+\vspace{4pt}
+\item Неопределённость: экстремально высокий, но возможный CO₂.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Четыре доступных действия}
+\begin{itemize}
+\item Исправить по явному правилу и перепроверить.
+\vspace{4pt}
+\item Сохранить с пометкой качества.
+\vspace{4pt}
+\item Исключить конкретное значение из конкретного расчёта.
+\vspace{4pt}
+\item Отложить строку/поле до уточнения первоисточника.
+\vspace{4pt}
+\end{itemize}
+\vfill\begin{alertblock}{Вопрос аудитории}Что будет, если для всех случаев выбрать удаление?\end{alertblock}
+\end{frame}
+\begin{frame}[t]{Пропуск не равен нулю}
+\begin{itemize}
+\item Нет измерения — не значит «измерено 0».
+\vspace{4pt}
+\item Среднее значение не восстанавливает потерянный факт.
+\vspace{4pt}
+\item Сохраните признак отсутствия измерения.
+\vspace{4pt}
+\item Проверьте, не сосредоточены ли пропуски в одном помещении.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Два вида повторов}
+\begin{itemize}
+\item Полная копия строки с подтверждённой повторной выгрузкой — технический дубль.
+\vspace{4pt}
+\item Одинаковый ID, но разные значения — конфликт, а не дубль.
+\vspace{4pt}
+\item Разные времена при одинаковом CO₂ — два физических наблюдения.
+\vspace{4pt}
+\end{itemize}
+\vfill\begin{alertblock}{Вопрос аудитории}Можно ли везде использовать drop\_duplicates по CO₂?\end{alertblock}
+\end{frame}
+\begin{frame}[t]{Экстремум — не ошибка по определению}
+\begin{itemize}
+\item Случай 4200 ppm требует флага и проверки.
+\vspace{4pt}
+\item Если убрать высокие значения, можно скрыть аварийный режим.
+\vspace{4pt}
+\item Порог исключения — предметное правило, а не желание улучшить график.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Справочник помещений}
+\begin{itemize}
+\item A-101 и a 101 допустимо связать по документированному алиасу.
+\vspace{4pt}
+\item Неизвестное D-999 не присваивается ближайшей комнате.
+\vspace{4pt}
+\item После JOIN со справочником число наблюдений не должно незаметно вырасти или уменьшиться.
+\vspace{4pt}
+\end{itemize}
+\vfill\begin{alertblock}{Вопрос аудитории}Почему внутреннее соединение опасно для необработанных ключей?\end{alertblock}
+\end{frame}
+\begin{frame}[t]{Сначала протокол, потом операция}
+\begin{itemize}
+\item Сохранить исходник и исходные числа строк/пропусков.
+\vspace{4pt}
+\item Описать правило и причину его применения.
+\vspace{4pt}
+\item Применить правило в копии данных.
+\vspace{4pt}
+\item Сверить баланс строк, ключи и изменённые поля.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{ИИ предлагает. Проверка решает}
+\begin{itemize}
+\item ИИ может написать формулу и перечень типичных проблем.
+\vspace{4pt}
+\item ИИ не знает, почему датчик показал 4200 ppm.
+\vspace{4pt}
+\item Перед применением правил проверьте контрпример.
+\vspace{4pt}
+\item Никаких необратимых действий без решения человека.
+\vspace{4pt}
+\end{itemize}
+\vfill\begin{alertblock}{Вопрос аудитории}Что в ответе ИИ является гипотезой, а не фактом?\end{alertblock}
+\end{frame}
+\begin{frame}[t]{Разберите плохой план ИИ}
+\begin{itemize}
+\item «Удалить все пропуски».
+\vspace{4pt}
+\item «Дубликат — любые строки с равным CO₂».
+\vspace{4pt}
+\item «Высокие значения CO₂ удалить как выбросы».
+\vspace{4pt}
+\item «Неизвестные помещения заменить ближайшими».
+\vspace{4pt}
+\end{itemize}
+\vfill\begin{alertblock}{Вопрос аудитории}Для каждого пункта назовите риск и контроль.\end{alertblock}
+\end{frame}
+\begin{frame}[t]{Лабораторная: протокол исправлений}
+\begin{itemize}
+\item Исходные файлы: поток измерений + справочник аудиторий.
+\vspace{4pt}
+\item Результат: таблица, журнал решений, карантин и баланс.
+\vspace{4pt}
+\item Нужно показать не менее шести спорных случаев и аудит ИИ.
+\vspace{4pt}
+\item Работать можно в таблицах, Python или исследовательском маршруте.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Проверка качества сдачи}
+\begin{itemize}
+\item Единица наблюдения определена.
+\vspace{4pt}
+\item Каждое изменение объяснено и воспроизводимо.
+\vspace{4pt}
+\item Необработанные случаи видны, а не исчезли.
+\vspace{4pt}
+\item ИИ-предложения проверены по данным.
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\begin{frame}[t]{Выходной билет}
+\begin{itemize}
+\item Назовите один случай, который нельзя было исправить автоматически.
+\vspace{4pt}
+\item Скажите, какая проверка доказала улучшение качества данных.
+\vspace{4pt}
+\item Объясните, почему «пустых ячеек не осталось» не равно «данным можно доверять».
+\vspace{4pt}
+\end{itemize}
+\end{frame}
+\end{document}
