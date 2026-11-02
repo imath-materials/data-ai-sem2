@@ -1,0 +1,8 @@
+(()=>{'use strict';
+const root=document.querySelector('[data-quiz-topic]');if(!root)return;const questions=window.TOPIC67_QUESTIONS?.[root.dataset.quizTopic]||[];let active=0;const picks=new Map();
+const e=id=>document.getElementById(id);const escape=s=>{let el=document.createElement('span');el.textContent=s;return el.innerHTML};
+function render(){let q=questions[active],p=picks.get(active);e('quiz-count').textContent=`Ситуация ${active+1} из ${questions.length}`;e('quiz-progress').style.width=(picks.size/questions.length*100)+'%';e('quiz-completed').textContent=`Разобрано ситуаций: ${picks.size} из ${questions.length}`;e('quiz-q').textContent=q.q;
+let opts=e('quiz-options');opts.replaceChildren();q.options.forEach((v,i)=>{let b=document.createElement('button');b.className='quiz-option';b.type='button';b.textContent=v;b.dataset.picked=String(i===p);b.addEventListener('click',()=>{picks.set(active,i);render()});opts.append(b)});
+let f=e('quiz-feedback');if(p===undefined){f.hidden=true}else{f.hidden=false;const title=e('quiz-feedback-title'),body=e('quiz-feedback-body');title.textContent=p===q.correct?'Верно по смыслу.':'Здесь есть ловушка.';body.textContent=q.why+' '+(p!==q.correct?'Перечитайте вопрос и попробуйте другую формулировку.':'');}e('quiz-prev').disabled=active===0;e('quiz-next').textContent=active===questions.length-1?'К первой ситуации':'Следующая ситуация →';}
+e('quiz-prev').addEventListener('click',()=>{if(active>0)active--;render()});e('quiz-next').addEventListener('click',()=>{active=active===questions.length-1?0:active+1;render()});e('quiz-reset').addEventListener('click',()=>{picks.clear();active=0;render()});render();
+})();

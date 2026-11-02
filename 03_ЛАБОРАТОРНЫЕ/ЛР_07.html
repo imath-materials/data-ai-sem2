@@ -1,0 +1,82 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Лабораторная 7. Корреляции и интерпретация</title><style>
+:root{--ink:#142e28;--mint:#146451;--bg:#f5f6f2;--paper:#fff;--muted:#526961;--line:#dbe4dc;--soft:#e8f5ee;--ochre:#f8f0df;--red:#9a4f35}
+*{box-sizing:border-box}body{background:var(--bg);color:var(--ink);font:16px/1.67 system-ui,-apple-system,'Segoe UI',Arial,sans-serif;margin:0}a{color:var(--mint);text-decoration:none}a:hover{text-decoration:underline}header{background:#0e3e34;color:#f1fbf6;padding:26px max(18px,calc((100vw - 1100px)/2));}header .kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;opacity:.78}header h1{color:#f3fbf6;font-size:27px;line-height:1.19;margin:8px 0 7px}header p{margin:0;max-width:800px;opacity:.86}nav{max-width:1100px;margin:auto;padding:13px 19px;color:var(--muted);font-size:14px}nav a{margin-right:20px}main{max-width:1020px;margin:18px auto 68px;background:var(--paper);border:1px solid var(--line);border-radius:15px;box-shadow:0 10px 28px #16362b0e;padding:clamp(24px,5vw,62px)}h1,h2,h3{color:#153b35;line-height:1.24}h1{font-size:36px;letter-spacing:-.045em;margin-top:.1em}h2{font-size:24px;margin-top:1.7em;padding-top:.18em;border-bottom:1px solid var(--line);padding-bottom:9px}h3{font-size:19px;margin-top:1.2em}p{max-width:860px;margin:1em 0}li{margin:.35em 0}strong{color:#0d6257}blockquote{background:var(--soft);border-left:4px solid var(--mint);margin:21px 0;padding:8px 20px;border-radius:0 8px 8px 0}blockquote p{margin:10px 0}table{border-collapse:collapse;width:100%;font-size:14px;margin:22px 0;border:1px solid var(--line)}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#e8f2ed;color:#214a3f}tr:nth-child(even) td{background:#fafbf9}code{font:0.91em 'DejaVu Sans Mono',monospace;background:#eef2ef;padding:2px 5px;border-radius:4px}pre{background:#112d2b;color:#d9eee7;padding:18px;overflow:auto;border-radius:8px}pre code{color:inherit;background:none;padding:0}aside{color:var(--muted);font-size:13px} .footer{margin-top:42px;border-top:1px solid var(--line);padding-top:13px;color:var(--muted);font-size:12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.tile{display:block;background:#f7faf8;border:1px solid var(--line);border-radius:10px;padding:20px;color:var(--ink)}.tile b{display:block;margin-bottom:7px;font-size:18px}.pill{display:inline-block;background:#e5f3ed;color:#0e6857;border-radius:60px;padding:3px 11px;font-size:12px;font-weight:700}.callout{background:var(--ochre);border-radius:9px;padding:15px 20px;margin:22px 0}.small{font-size:13px;color:var(--muted)}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}button,select{font:inherit;padding:10px 14px;border:1px solid #c5dcd1;border-radius:8px;background:white;color:var(--ink)}button{cursor:pointer}button:focus-visible{outline:3px solid #e4ad45}button.primary{background:var(--mint);color:white;border-color:var(--mint)}button:disabled{opacity:.5;cursor:default}.correct{background:#e3f4e9;padding:15px 18px;border-radius:10px;border:1px solid #7eae90}.wrong{background:#fff0e7;padding:15px 18px;border-radius:10px;border:1px solid #d0a28b}.exercisecard{padding:24px;border:1px solid var(--line);border-radius:13px;background:#fff}.exercisecard h2{border:0;padding:0;margin-top:10px}.buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.buttons button{text-align:left;line-height:1.3;min-height:64px}.meter{height:8px;background:#dae7df;border-radius:99px;overflow:hidden}.meter span{display:block;height:100%;background:var(--mint);transition:width .2s}.status{min-height:64px}.inputrow{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.inputrow label{font-size:13px;color:var(--muted)}.inputrow input{width:150px}.example{font-size:14px;background:#eff7f3;padding:14px;border-radius:10px}.icon{font-size:24px}@media(max-width:650px){main{border-radius:0;margin:0;padding:19px}header{padding:24px 18px}header h1{font-size:23px}.grid,.buttons{grid-template-columns:1fr}table{display:block;overflow:auto}}@media print{body{background:white;font-size:13px}main{box-shadow:none;border:0;padding:2mm;margin:0}header{background:white;color:#103e37;padding:0}header h1{color:#103e37}nav,.toolbar,button{display:none!important}h2{break-after:avoid}blockquote,table{break-inside:avoid}}
+
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.btn{display:inline-block;color:white;background:#146451;border:1px solid #146451;border-radius:10px;padding:10px 17px;font-weight:650;text-decoration:none}.btn.alt{background:#fff;color:#146451}.btn:hover{background:#0e3e34;color:white;text-decoration:none}.btn.alt:hover{background:#e8f5ee;color:#146451}img{max-width:100%;height:auto}
+</style></head><body><header><div class="kicker">Данные как основа ИИ · бакалавриат · семестр 2</div><h1>Лабораторная 7. Корреляции и интерпретация</h1><p>Самостоятельная практика и профильные маршруты · «Умный кампус»</p></header><nav><a href="../index.html">← Все темы</a><a href="../story.html">История проекта</a><a href="../02_ЛЕКЦИИ/Лекция_04.html">Лекция 04</a><a href="../02_ЛЕКЦИИ/Лекция_05.html">Лекция 05</a><a href="../02_ЛЕКЦИИ/Лекция_06.html">Лекция 06</a><a href="../02_ЛЕКЦИИ/Лекция_07.html">Лекция 07</a><a href="../resources.html">Практика и файлы</a></nav><main><h1>Лабораторная работа 7. Связь, которая меняет знак</h1>
+<h2>Задача</h2>
+<p>Администрация попросила проверить, как число людей связано с CO₂ в учебных помещениях. На совокупных данных вывод неожиданен: при большем числе людей CO₂ в среднем ниже. Ваша задача — проверить, не создаётся ли этот эффект объединением несопоставимых наблюдений, и подготовить <strong>корректный аналитический вывод</strong>.</p>
+<p><strong>Основной файл:</strong> <code>campus_relationships_07.csv</code> — 108 сессий с двумя режимами вентиляции, количеством людей, CO₂, помещением и вместимостью. Весь набор является наблюдательным: случайного распределения по режимам нет. <strong>Дополнительный профильный набор</strong> для программных направлений — <code>service_metrics_07.csv</code>.</p>
+<h2>Общее обязательное ядро</h2>
+<ol>
+<li>Укажите единицу наблюдения и проверьте количество строк, пропуски и типы столбцов. Объясните, почему одна сессия не равна одному человеку.</li>
+<li>Постройте диаграмму рассеяния <code>people_count</code> × <code>co2_ppm</code> по всем записям. Подпишите оси и единицы.</li>
+<li>Рассчитайте коэффициент корреляции Пирсона для всей выборки. Укажите знак и что именно коэффициент измеряет.</li>
+<li>Разделите наблюдения по <code>vent_mode</code>. Для каждого режима рассчитайте объём группы и корреляцию, постройте раскрашенную диаграмму или два отдельных графика. <strong>Сопоставьте знаки общей и внутригрупповых корреляций.</strong></li>
+<li>Проверьте, чем кроме режима различаются группы. Используйте доступные в файле сведения о вместимости и помещении. Напишите, почему по этой выборке нельзя оценить чистый эффект вентиляции.</li>
+<li>Сформулируйте по одному примеру: (а) наблюдаемого факта, (б) гипотезы-объяснения, (в) действия для проверки гипотезы.</li>
+<li>Возьмите ответ ИИ или приведённый ниже черновик, найдите в нём минимум три содержательных ошибки и напишите обоснованную замену.</li>
+<li>Передайте аналитическую записку (200–350 слов), содержащую график, расчёт, разрезы и ограничения.</li>
+</ol>
+<h2>Маршрут A — работа в таблицах (без кода)</h2>
+<p>Используйте электронную таблицу: фильтруйте по режиму, создавайте диаграмму рассеяния, считайте корреляцию через доступную функцию (например, <code>CORREL</code>), сверяйте число строк при переключении фильтра. Если ваш редактор не строит удобный цветовой график, сделайте два графика с общей шкалой и явно укажите различие групп.</p>
+<p><strong>Содержательный вызов:</strong> напишите две версии ответа на запрос администрации — ошибочно «причинную» и исправленную аналитическую. Объясните, каким именно словом первая версия нарушает границы доказанного.</p>
+<h2>Маршрут B — программный</h2>
+<p>В <code>07_Корреляции_разбор.ipynb</code> показан минимальный способ вычисления корреляции и разбиения по группам; в <code>07_Самостоятельная.ipynb</code> сохраните собственное исследование. Реализуйте функцию <code>summarise_relation(data, group=None)</code>, которая возвращает число наблюдений, корреляцию и предупреждение при постоянной переменной. Проверьте, что общая и групповые статистики вычислены над правильными строками. Постройте один общий график с цветом группы и два раздельных графика.</p>
+<p><strong>Дополнительная практика:</strong> постройте небольшую корреляционную матрицу для числовых признаков <code>people_count</code>, <code>co2_ppm</code>, <code>room_capacity</code>, <code>temp_c</code>. Выберите одну сильную корреляцию и объясните, почему она не является доказательством причины.</p>
+<p><strong>Дополнительная инженерная задача:</strong> примените алгоритм к <code>service_metrics_07.csv</code> и покажите, почему смешение режимов обслуживания может создавать неверное представление о зависимости нагрузки и задержки. Для продвинутой группы можно попробовать бутстреп-интервал корреляции и обсудить, почему он не устраняет смешение.</p>
+<h2>Маршрут C — исследовательский</h2>
+<p>Опишите возможные смешивающие факторы, не только те, что есть в файле: размер аудитории, время суток, интенсивность вентиляции, длительность занятия, калибровка датчика. Нарисуйте предположительную схему зависимостей и предложите способ собрать сопоставимые наблюдения. Отдельно объясните, какие причинные утверждения <strong>не следуют</strong> из данных даже после разбиения по режиму.</p>
+<p><strong>Дополнительный вызов:</strong> сформулируйте предварительную гипотезу и ограничения для её последующей формальной проверки. Не обязателен p-value; если он вычисляется, опишите метод и допущения.</p>
+<h2>Работа с ИИ: черновик для аудита</h2>
+<blockquote>
+<p>«По данным кампуса наблюдается отрицательная корреляция между количеством людей и CO₂. Это доказывает, что увеличение посещаемости уменьшает CO₂. Рекомендуем увеличить число людей в аудиториях, чтобы улучшить вентиляцию».</p>
+</blockquote>
+<p>Проверьте каждое утверждение: какое основано на вычислении, какое смешивает корреляцию и причинность, какое делает неподтверждённую управленческую рекомендацию? Запросите у модели альтернативные объяснения, но проверьте их по столбцам и структуре выборки.</p>
+<h2>Что сдавать</h2>
+<ul>
+<li>Данные/таблица вычислений, общая и групповые корреляции, не менее двух видов визуального сравнения.</li>
+<li>Таблица различий групп по режиму и вместимости.</li>
+<li>Три уровня вывода: наблюдение → гипотеза → план проверки.</li>
+<li>Отредактированный ответ ИИ с минимум тремя обоснованными исправлениями.</li>
+<li>Итоговый текст для администрации объёмом 200–350 слов.</li>
+</ul>
+<h2>Оценивание: 10 баллов</h2>
+<table>
+<thead>
+<tr>
+<th>Критерий</th>
+<th style="text-align:right">Баллы</th>
+<th>Условия</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Корректность выборки</td>
+<td style="text-align:right">2</td>
+<td>Единица наблюдения, группы и объём проверены</td>
+</tr>
+<tr>
+<td>Графики и расчёт корреляций</td>
+<td style="text-align:right">3</td>
+<td>Видна общая и внутригрупповая картина; статистики проверяемы</td>
+</tr>
+<tr>
+<td>Смешение и ограничения</td>
+<td style="text-align:right">2</td>
+<td>Названы реальные различия групп, не выдумана причинность</td>
+</tr>
+<tr>
+<td>Аудит ИИ</td>
+<td style="text-align:right">2</td>
+<td>Ошибки отмечены, вывод переписан с опорой на данные</td>
+</tr>
+<tr>
+<td>Качество записки</td>
+<td style="text-align:right">1</td>
+<td>Три уровня рассуждения разделены и ясно представлены</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Внимание:</strong> правильная формула корреляции с ошибочным причинным выводом не является полным решением. Максимальные 10 баллов доступны в любом маршруте.</p>
+<div class="cta"><a class="btn alt" href="../index.html">К темам</a><a class="btn" href="../05_ДАННЫЕ_СТУДЕНТАМ/campus_relationships_07.csv">Скачать данные</a></div></main></body></html>

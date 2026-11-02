@@ -1,0 +1,64 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Тема 6. Описательная статистика и распределения</title><style>
+:root{--ink:#142e28;--mint:#146451;--bg:#f5f6f2;--paper:#fff;--muted:#526961;--line:#dbe4dc;--soft:#e8f5ee;--ochre:#f8f0df;--red:#9a4f35}
+*{box-sizing:border-box}body{background:var(--bg);color:var(--ink);font:16px/1.67 system-ui,-apple-system,'Segoe UI',Arial,sans-serif;margin:0}a{color:var(--mint);text-decoration:none}a:hover{text-decoration:underline}header{background:#0e3e34;color:#f1fbf6;padding:26px max(18px,calc((100vw - 1100px)/2));}header .kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;opacity:.78}header h1{color:#f3fbf6;font-size:27px;line-height:1.19;margin:8px 0 7px}header p{margin:0;max-width:800px;opacity:.86}nav{max-width:1100px;margin:auto;padding:13px 19px;color:var(--muted);font-size:14px}nav a{margin-right:20px}main{max-width:1020px;margin:18px auto 68px;background:var(--paper);border:1px solid var(--line);border-radius:15px;box-shadow:0 10px 28px #16362b0e;padding:clamp(24px,5vw,62px)}h1,h2,h3{color:#153b35;line-height:1.24}h1{font-size:36px;letter-spacing:-.045em;margin-top:.1em}h2{font-size:24px;margin-top:1.7em;padding-top:.18em;border-bottom:1px solid var(--line);padding-bottom:9px}h3{font-size:19px;margin-top:1.2em}p{max-width:860px;margin:1em 0}li{margin:.35em 0}strong{color:#0d6257}blockquote{background:var(--soft);border-left:4px solid var(--mint);margin:21px 0;padding:8px 20px;border-radius:0 8px 8px 0}blockquote p{margin:10px 0}table{border-collapse:collapse;width:100%;font-size:14px;margin:22px 0;border:1px solid var(--line)}th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}th{background:#e8f2ed;color:#214a3f}tr:nth-child(even) td{background:#fafbf9}code{font:0.91em 'DejaVu Sans Mono',monospace;background:#eef2ef;padding:2px 5px;border-radius:4px}pre{background:#112d2b;color:#d9eee7;padding:18px;overflow:auto;border-radius:8px}pre code{color:inherit;background:none;padding:0}aside{color:var(--muted);font-size:13px} .footer{margin-top:42px;border-top:1px solid var(--line);padding-top:13px;color:var(--muted);font-size:12px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.tile{display:block;background:#f7faf8;border:1px solid var(--line);border-radius:10px;padding:20px;color:var(--ink)}.tile b{display:block;margin-bottom:7px;font-size:18px}.pill{display:inline-block;background:#e5f3ed;color:#0e6857;border-radius:60px;padding:3px 11px;font-size:12px;font-weight:700}.callout{background:var(--ochre);border-radius:9px;padding:15px 20px;margin:22px 0}.small{font-size:13px;color:var(--muted)}.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}button,select{font:inherit;padding:10px 14px;border:1px solid #c5dcd1;border-radius:8px;background:white;color:var(--ink)}button{cursor:pointer}button:focus-visible{outline:3px solid #e4ad45}button.primary{background:var(--mint);color:white;border-color:var(--mint)}button:disabled{opacity:.5;cursor:default}.correct{background:#e3f4e9;padding:15px 18px;border-radius:10px;border:1px solid #7eae90}.wrong{background:#fff0e7;padding:15px 18px;border-radius:10px;border:1px solid #d0a28b}.exercisecard{padding:24px;border:1px solid var(--line);border-radius:13px;background:#fff}.exercisecard h2{border:0;padding:0;margin-top:10px}.buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.buttons button{text-align:left;line-height:1.3;min-height:64px}.meter{height:8px;background:#dae7df;border-radius:99px;overflow:hidden}.meter span{display:block;height:100%;background:var(--mint);transition:width .2s}.status{min-height:64px}.inputrow{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.inputrow label{font-size:13px;color:var(--muted)}.inputrow input{width:150px}.example{font-size:14px;background:#eff7f3;padding:14px;border-radius:10px}.icon{font-size:24px}@media(max-width:650px){main{border-radius:0;margin:0;padding:19px}header{padding:24px 18px}header h1{font-size:23px}.grid,.buttons{grid-template-columns:1fr}table{display:block;overflow:auto}}@media print{body{background:white;font-size:13px}main{box-shadow:none;border:0;padding:2mm;margin:0}header{background:white;color:#103e37;padding:0}header h1{color:#103e37}nav,.toolbar,button{display:none!important}h2{break-after:avoid}blockquote,table{break-inside:avoid}}
+
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.btn{display:inline-block;color:white;background:#146451;border:1px solid #146451;border-radius:10px;padding:10px 17px;font-weight:650;text-decoration:none}.btn.alt{background:#fff;color:#146451}.btn:hover{background:#0e3e34;color:white;text-decoration:none}.btn.alt:hover{background:#e8f5ee;color:#146451}img{max-width:100%;height:auto}
+</style></head><body><header><div class="kicker">Данные как основа ИИ · бакалавриат · семестр 2</div><h1>Тема 6. Описательная статистика и распределения</h1><p>Очное занятие и теоретические основы · «Умный кампус»</p></header><nav><a href="../index.html">← Все темы</a><a href="../story.html">История проекта</a><a href="../02_ЛЕКЦИИ/Лекция_04.html">Лекция 04</a><a href="../02_ЛЕКЦИИ/Лекция_05.html">Лекция 05</a><a href="../02_ЛЕКЦИИ/Лекция_06.html">Лекция 06</a><a href="../02_ЛЕКЦИИ/Лекция_07.html">Лекция 07</a><a href="../resources.html">Практика и файлы</a></nav><main><h1>Тема 6. Описательная статистика и распределения</h1>
+<p><strong>Занятие:</strong> «Одно среднее — несколько реальностей»<br/>
+<strong>Кейс:</strong> данные измерений CO₂ в учебных помещениях.<br/>
+<strong>Связь с темами 4–5:</strong> данные предварительно очищены, преобразованы и снабжены признаками. Теперь нужно решить, какие характеристики действительно описывают наблюдения.</p>
+<h2>1. Какой вопрос мы задаём?</h2>
+<p>В распоряжении аналитика не просто столбец чисел, а множество <strong>наблюдений</strong>. Прежде чем считать среднее, следует определить:</p>
+<ul>
+<li>что является единицей наблюдения: сессия, аудитория, датчик, учебный день;</li>
+<li>что является измеренной величиной, а что — идентификатором или категорией;</li>
+<li>какие записи входят в выборку и какие исключены из конкретного расчёта;</li>
+<li>какую задачу решает характеристика: описать «обычное», оценить разброс, обнаружить редкие эпизоды или сравнить группы.</li>
+</ul>
+<p><strong>Обсуждение.</strong> Управляющий говорит: «Среднее CO₂ по двум аудиториям одинаково, значит, разницы нет». Какие вопросы нужно задать прежде, чем согласиться?</p>
+<h2>2. Центр распределения</h2>
+<p>Выборочное среднее: <code>x̄ = (x₁ + … + xₙ) / n</code>. В отличие от него медиана — значение, делящее упорядоченную выборку пополам. Мода — наиболее частое значение (для непрерывных измерений зависит от округления и группировки).</p>
+<p>Рассмотрим две серии:</p>
+<table>
+<thead>
+<tr>
+<th>A</th>
+<th>920, 930, 960, 980, 990, 1010, 1030, 1050, 1060, 1070</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B</td>
+<td>500, 600, 650, 700, 750, 850, 900, 1100, 1450, 2500</td>
+</tr>
+</tbody>
+</table>
+<p>У обеих среднее 1000 ppm. У A медиана 1000 ppm, у B — 800 ppm. Следовательно, <strong>равенство средних не означает равенства распределений</strong>.</p>
+<p><strong>Микрозадание.</strong> Какую величину использовать для сообщения об «обычной» сессии? Почему нужно отдельно указать редкие пики?</p>
+<h2>3. Разброс и квартильное описание</h2>
+<p>Минимум и максимум определяют диапазон (размах = max − min), но особенно чувствительны к краям. Квартили <code>Q₁</code> и <code>Q₃</code> описывают границы центральной половины упорядоченных наблюдений. Межквартильный размах <code>IQR = Q₃ − Q₁</code> показывает ширину этой половины.</p>
+<p>Дисперсия описывает средний квадрат отклонений. Для выборки её часто считают с делением на $n-1$; стандартное отклонение — корень из дисперсии и выражается в тех же единицах, что исходные значения. Важно не смешивать определение для полной совокупности и выборочную оценку. На вводном уровне достаточно понимать смысл и сравнивать расчёты с явным указанием используемой формулы.</p>
+<p><strong>На доске:</strong> одно и то же значение среднего 1000 ppm и два разных разброса. Что это меняет в решении о том, какую аудиторию проверить первой?</p>
+<h2>4. Чтение гистограммы и boxplot</h2>
+<p>Гистограмма строится по числовой переменной и количеству наблюдений в интервалах. Она помогает увидеть одно или несколько скоплений, асимметрию и длинные хвосты. Ширина интервала влияет на картину: прежде чем описывать «пик», попробуйте минимум два варианта разбиения.</p>
+<p>Boxplot кратко отражает медиану, квартили и условные «усы». Точки за усами часто называют потенциальными выбросами, но граница 1,5 IQR — <strong>эвристика визуализации</strong>, а не универсальный фильтр ошибки. Для проверки записи нужны предметный контекст, повторные измерения и информация о приборе.</p>
+<p><strong>Рассмотрение типичной ошибки:</strong> «На boxplot точка отдельно — удаляем её, затем пересчитываем среднее». Почему здесь не хватает аргумента?</p>
+<h2>5. Пропуски и состав выборки</h2>
+<p>В двух корпусах запланировано по 12 измерений. У Северного корпуса отсутствует одно, у Южного — восемь. Если анализировать только известный CO₂, выборка состоит из 11 и 4 наблюдений; её состав отличается от исходного плана. Это важно сообщить даже тогда, когда формулы применены безошибочно.</p>
+<p>Отдельно рассмотрите три возможных механизма отсутствия: случайная потеря, технический сбой определённого прибора, пропуски именно при перегрузке. В реальных данных механизм часто неизвестен. Нельзя автоматически утверждать направление смещения, но можно зафиксировать неполноту и ограничить вывод.</p>
+<h2>6. Сравнение групп и аккуратность утверждений</h2>
+<p>Перед сравнением проверьте: одинаковы ли единица наблюдения, шкала измерения, период, метод получения данных и критерий отбора. Если у одной группы 40 сессий, а у другой 4, то одинаковые средние могут иметь разную устойчивость. Сравнение распределений позволяет увидеть больше, чем сравнение одной характеристики.</p>
+<p><strong>Мини-демонстрация:</strong> по очищенным данным темы 5 получить среднее CO₂ по двум помещениям и построить два графика. Показать, что содержательная разница выявляется после выбора более точного аналитического вопроса.</p>
+<h2>7. Роль ИИ в статистическом анализе</h2>
+<p>ИИ-помощник может написать формулы, подсказать, какие графики построить, объяснить термин и предложить предварительный текст отчёта. При этом студент должен самостоятельно проверить численные значения, единицы, состав выборки и смысл выводов.</p>
+<p>Неприемлемые переходы: «среднее одинаково → условия одинаковы», «точка необычна → датчик неисправен», «нет известных значений → значение было нулевым». В ответе ИИ попросите указать исходные столбцы, процедуру расчёта и ограничения.</p>
+<h2>8. Заключение и контрольные вопросы</h2>
+<ol>
+<li>Как могут два одинаковых средних описывать разные ситуации?</li>
+<li>В каком случае медиана информативнее среднего — и почему нужно показывать оба?</li>
+<li>Чем отличаются выброс в статистическом описании и ошибка измерения?</li>
+<li>Почему удаление всех строк с пропусками меняет предмет сравнения?</li>
+<li>Какие три проверки нужны перед тем, как включить вывод ИИ в отчёт?</li>
+</ol>
+<p><strong>Выход занятия:</strong> короткий сравнительный статистический паспорт двух аудиторий с описанием распределений и ограничений анализа. Он станет одной из опор для темы 7.</p>
+<div class="cta"><a class="btn alt" href="../index.html">К темам</a><a class="btn" href="../read/06.html">Интерактивный лонгрид</a></div></main></body></html>
